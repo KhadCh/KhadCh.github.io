@@ -90,28 +90,7 @@
  
  //}
 
-    &__items{
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: space-between;
-        overflow: hidden;
-        height: 69px;
-
-        &__content {
-           // display: flex;
-           // flex-direction: column;
-           // gap:5px;
-        
-            display: flex;
-            flex-direction: column;
-            flex: 2;
-            padding: 15px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-  
-    }
+ 
 
 
 
@@ -157,14 +136,37 @@
 
 }
 
+
+
+.items {
+    &__meals {
+
+        overflow: hidden;
+        height: 69px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        &--content {
+            display: flex;
+            flex-direction: column;
+            flex: 2;
+            padding: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
 .meals {
 
-    &--title,
-    &--subtitle {
+    &__title,
+    &__subtitle {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    &--cart {
+    &__cart {
 
 
         display: flex;
@@ -177,7 +179,7 @@
         margin-right: -4em;
 
         border-radius: 0 15px 15px 0;
-        transition: 700ms ease;
+        transition: 400ms  ease-in-out;
 
         &__icone {
             color: white;
@@ -185,17 +187,27 @@
         }
     }
 
-    .menu__items:hover &__cart {
+    .items__meals:hover &__cart {
         margin-right: 0em;
     }
 
-    // .items__dish:active &__addtocart {
-    //     margin-right: 0em;
-
-
-    // }
-
     &__price {
-        padding: 0 15px 15px 0;
+        padding: 0 15px 15px 15px;
     }
+
+    @media (min-width: $max-width) { // hover en desktop
+        
+        .items__meals:hover &__cart {
+            margin-right: 0em;
+        }
+    
+  
+      }
 }
+
+@for $i from 0 through 2 {
+    
+    .#{nth(('entree', 'plat', 'dessert'), $i + 1)} {
+      @include appearAnim($i * .7s);
+    }
+  }
